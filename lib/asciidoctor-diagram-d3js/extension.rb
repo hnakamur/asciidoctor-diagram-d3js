@@ -1,5 +1,6 @@
 require 'json'
 require 'time'
+require 'nokogiri'
 require 'asciidoctor-diagram/api/diagram'
 
 module Asciidoctor
@@ -49,7 +50,13 @@ puts "d3js_to_svg args=#{args}"
           io.close_write
           io.read
         end
-        content
+
+        doc = Nokogiri::XML(io.read)
+        doc.encoding = 'UTF-8'
+        root = doc.root()
+        root.add_namespace(nil, 'http://www.w3.org/2000/svg')
+        root.add_namespace('xlink', 'http://www.w3.org/1999/xlink')
+        doc.to_xml
       end
 
       def self.included(mod)

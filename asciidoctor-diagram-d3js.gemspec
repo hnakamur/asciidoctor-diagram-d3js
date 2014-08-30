@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Asciidoctor::Diagram::D3js::VERSION
   spec.authors       = ["Hiroaki Nakamura"]
   spec.email         = ["hnakamur@gmail.com"]
-  spec.summary       = %q{a ruby gem for asciidoctor-diagram to use D3.js diagrams}
-  spec.description   = ""
+  spec.summary       = %q{an extension to asciidoctor-diagram to include D3.js diagrams}
+  spec.description   = "This extension open html files using D3.js with Phantom.js, convert them to png or svg files, and include them in asciidoc documents."
   spec.homepage      = "https://github.com/hnakamur/asciidoctor-diagram-d3js"
   spec.license       = "MIT"
 

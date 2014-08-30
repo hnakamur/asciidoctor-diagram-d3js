@@ -1,0 +1,26 @@
+#!/usr/bin/env phantomjs
+var page = require('webpage').create();
+var system = require('system');
+
+if (system.args.length !== 2) {
+  console.log('Usage: ' + system.args[0] + ' html_file');
+  phantom.exit(1);
+}
+
+var htmlFile = system.args[1];
+var pngFile = system.args[2];
+
+//page.settings.userAgent = 'SpecialAgent';
+page.open(htmlFile, function(status) {
+  if (status === 'fail') {
+    console.log('Error! failed to open ' + htmlFile);
+    phantom.exit(1);
+  }
+
+  var svg = page.evaluate(function() {
+    //return document.getElementsByTagName('svg')[0].innertHTML; // NOTE: No good. returns null
+    return document.getElementById('example').innerHTML;
+  });
+  console.log(svg);
+  phantom.exit();
+});
